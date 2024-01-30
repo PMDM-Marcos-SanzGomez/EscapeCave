@@ -6,6 +6,10 @@ public class Enemy : MonoBehaviour
 {
     public GameObject fireball; // Asigna el prefab de la bola de fuego en el Inspector
     public float throwSpeed = 10f;
+    public float movementSpeed = 5f;
+    public LayerMask wallLayer;
+
+    private bool movingRight = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +20,31 @@ public class Enemy : MonoBehaviour
 
         // Aplica fuerza para lanzar la bola de fuego
         rb.velocity = transform.forward * throwSpeed;
-        
+
         StartCoroutine(ThrowFireball());
+        MoveHorizontally();
 
     }
 
+    // Mover horizontal no funciona, arreglar 
+
+    void MoveHorizontally()
+    {
+        // Determina la dirección del movimiento
+        Vector2 direction = movingRight ? Vector2.right : Vector2.left;
+
+        // Realiza un Raycast hacia adelante para detectar paredes
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, wallLayer);
+
+        // Si hay una pared, cambia la dirección del movimiento
+        if (hit.collider != null)
+        {
+            movingRight = !movingRight;
+        }
+
+        // Mueve al enemigo en la dirección correspondiente
+        transform.Translate(direction * movementSpeed * Time.deltaTime);
+    }
 
     IEnumerator ThrowFireball()
     {

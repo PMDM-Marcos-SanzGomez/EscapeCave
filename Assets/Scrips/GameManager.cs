@@ -10,6 +10,7 @@ public static class GameManager
 
     public static int currentKeys = 0;
     public static int currentGems = 0;
-    public static int currentLives = 0;
+    public static int currentLives = 3;
+    public static int attemps = 0;
 
 }

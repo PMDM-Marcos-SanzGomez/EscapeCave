@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-//using Cinemachine; 
+//using Cinemachine;
 
 public class Character : MonoBehaviour
 {
@@ -17,12 +18,16 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
+    private Vector3 initialPosition;
+    private float timer = 180f; // 3 minutos en segundos
+    public TextMeshProUGUI timerText;
 
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator> ();
         rigidbody2d = GetComponent<Rigidbody2D> ();
+        initialPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -33,16 +38,14 @@ public class Character : MonoBehaviour
                                         LayerMask.GetMask ("Ground"));
 
         if (grounded && Input.GetButtonDown ("Jump") && Mathf.Abs(rigidbody2d.velocity.y) < 0.01f){
-            rigidbody2d.AddForce (Vector2.up * jumpMovement);   
+            rigidbody2d.AddForce (Vector2.up * jumpMovement);
         }
-            
+
         if (grounded){
             animator.SetTrigger ("Grounded");
         } else{
             animator.SetTrigger ("Jump");
         }
-            
-        
 
         Speed = lateralMovement * Input.GetAxis ("Horizontal");
         transform.Translate (Vector2.right * Speed * Time.deltaTime);
@@ -51,6 +54,28 @@ public class Character : MonoBehaviour
             transform.localScale = new Vector3 (1, 1, 1);
         else
             transform.localScale = new Vector3 (-1, 1, 1);
+
+        if (GameManager.currentLives <= 0)
+            {
+                GameManager.currentLives = 3;
+                textLives.text = GameManager.currentLives.ToString();
+
+                transform.position = initialPosition;
+
+                GameManager.attemps++;
+
+            }
+
+        if (timer > 0)
+        {
+            timer -= Time.deltaTime;
+            UpdateTimerDisplay();
+        }
+        else
+        {
+            // Cuando esten todas las escenas creadas cambiar el else.
+            // ResetScene();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
@@ -78,5 +103,10 @@ public class Character : MonoBehaviour
         }
    }
 
- 
+   void UpdateTimerDisplay()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60);
+        int seconds = Mathf.FloorToInt(timer % 60);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
 }

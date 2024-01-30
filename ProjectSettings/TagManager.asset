@@ -8,6 +8,7 @@ TagManager:
   - Gem
   - Enemy
   - Enemy Proyectile
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 3010666319
+    locked: 0
+  - name: UI
+    uniqueID: 1240484153
     locked: 0

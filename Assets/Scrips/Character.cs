@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 //using Cinemachine; 
 
 public class Character : MonoBehaviour
@@ -13,6 +14,9 @@ public class Character : MonoBehaviour
     private Animator animator;
     private Rigidbody2D rigidbody2d;
     public bool grounded = true;
+    public TextMeshProUGUI textLives;
+    public TextMeshProUGUI textGems;
+    public TextMeshProUGUI textKey;
 
 
     // Use this for initialization
@@ -50,11 +54,27 @@ public class Character : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D collider) {
-    if (collider.gameObject.tag == "Key") {
-            collider.GetComponent<AudioSource>().Play();
-            Key.numKeys--;
-            GameManager.pickedUpKey = true;
-            //Destroy (collider.gameObject);
+        if (collider.gameObject.tag == "Key") {
+                collider.GetComponent<AudioSource>().Play();
+                Key.numKeys--;
+                GameManager.currentKeys++;
+                textKey.text = GameManager.currentKeys.ToString();
+                //Destroy (collider.gameObject);
+        }
+        if (collider.gameObject.tag == "Gem") {
+                collider.GetComponent<AudioSource>().Play();
+                Gem.numGems--;
+                GameManager.currentGems++;
+                textGems.text = GameManager.currentGems.ToString();
+                //Destroy (collider.gameObject);
+        }
+        if (collider.gameObject.tag == "Enemy") {
+                gameObject.GetComponent<AudioSource>().Play();
+                GameManager.currentLives--;
+                print(GameManager.currentLives);
+                animator.SetTrigger ("Hurt");
+                textLives.text = GameManager.currentLives.ToString();
+                //Destroy (collider.gameObject);
         }
    }
 

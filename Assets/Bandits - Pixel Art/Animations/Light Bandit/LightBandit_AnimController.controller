@@ -485,16 +485,13 @@ AnimatorStateTransition:
   - m_ConditionMode: 2
     m_ConditionEvent: Grounded
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: AirSpeed
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 110241120}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.15050721
+  m_TransitionDuration: 0.22067428
   m_TransitionOffset: 0.0026590847
   m_ExitTime: 0.83510596
   m_HasExitTime: 0

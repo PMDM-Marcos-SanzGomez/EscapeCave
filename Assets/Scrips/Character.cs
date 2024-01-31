@@ -28,6 +28,7 @@ public class Character : MonoBehaviour
     public AudioClip hurtSound;
     public AudioClip deathSound;
     public AudioClip jumpSound;
+    float movementButton = 0.0f;
 
 
     // Use this for initialization
@@ -56,6 +57,8 @@ public class Character : MonoBehaviour
         }
 
         Speed = lateralMovement * Input.GetAxis ("Horizontal");
+        //Speed = lateralMovement * movementButton;
+
         transform.Translate (Vector2.right * Speed * Time.deltaTime);
         animator.SetFloat("Speed", Mathf.Abs(Speed));
         if (Speed < 0)
@@ -89,6 +92,15 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void Jump()
+    {
+        if (grounded)
+            rigidbody2d.AddForce(Vector2.up * jumpMovement);
+    }
+    public void Move(float amount)
+    {
+        movementButton = amount;
+    }
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.tag == "Key") {
                 Key.numKeys--;

@@ -27,6 +27,7 @@ public class Character : MonoBehaviour
     public AudioClip gemSound;
     public AudioClip hurtSound;
     public AudioClip deathSound;
+    public AudioClip jumpSound;
 
 
     // Use this for initialization
@@ -45,6 +46,7 @@ public class Character : MonoBehaviour
 
         if (grounded && Input.GetButtonDown ("Jump") && Mathf.Abs(rigidbody2d.velocity.y) < 0.01f){
             rigidbody2d.AddForce (Vector2.up * jumpMovement);
+            AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
 
         if (grounded){
@@ -89,13 +91,10 @@ public class Character : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.tag == "Key") {
-                gameObject.GetComponent<AudioSource>().volume=1f;
-                collider.GetComponent<AudioSource>().Play();
                 Key.numKeys--;
                 GameManager.currentKeys++;
                 textKey.text = GameManager.currentKeys.ToString();
-                //AudioSource.PlayClipAtPoint(keySound, transform.position);
-
+                AudioSource.PlayClipAtPoint(keySound, transform.position);
                 Destroy (collider.gameObject);
         }
         if (collider.gameObject.tag == "Gem") {

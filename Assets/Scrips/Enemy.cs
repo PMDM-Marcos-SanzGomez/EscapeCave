@@ -28,10 +28,13 @@ public class Enemy : MonoBehaviour
         if (hit.collider != null)
         {
             movingRight = !movingRight;
+            transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
         // Mueve al enemigo en la dirección correspondiente
         transform.Translate(direction * movementSpeed * Time.deltaTime);
+        
+
     }
 
 }

@@ -7,6 +7,7 @@ using TMPro;
 
 public class Character : MonoBehaviour
 {
+    private const int matchSecondsDuration = 180;
     // Start is called before the first frame update
     public float Speed = 0.0f;
     public float lateralMovement = 2.0f;
@@ -18,9 +19,14 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
+    
     private Vector3 initialPosition;
-    private float timer = 180f; // 3 minutos en segundos
+    private float timer = matchSecondsDuration; // 3 minutos en segundos
     public TextMeshProUGUI timerText;
+    public AudioClip keySound;
+    public AudioClip gemSound;
+    public AudioClip hurtSound;
+    public AudioClip deathSound;
 
 
     // Use this for initialization
@@ -57,6 +63,7 @@ public class Character : MonoBehaviour
 
         if (GameManager.currentLives <= 0)
             {
+                timer = matchSecondsDuration;
                 GameManager.currentLives = 3;
                 textLives.text = GameManager.currentLives.ToString();
 
@@ -69,10 +76,12 @@ public class Character : MonoBehaviour
         if (timer > 0)
         {
             timer -= Time.deltaTime;
+            
             UpdateTimerDisplay();
         }
         else
         {
+            timer = matchSecondsDuration;
             // Cuando esten todas las escenas creadas cambiar el else.
             // ResetScene();
         }
@@ -80,26 +89,34 @@ public class Character : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.tag == "Key") {
+                gameObject.GetComponent<AudioSource>().volume=1f;
                 collider.GetComponent<AudioSource>().Play();
                 Key.numKeys--;
                 GameManager.currentKeys++;
                 textKey.text = GameManager.currentKeys.ToString();
-                //Destroy (collider.gameObject);
+                //AudioSource.PlayClipAtPoint(keySound, transform.position);
+
+                Destroy (collider.gameObject);
         }
         if (collider.gameObject.tag == "Gem") {
-                collider.GetComponent<AudioSource>().Play();
                 Gem.numGems--;
                 GameManager.currentGems++;
                 textGems.text = GameManager.currentGems.ToString();
-                //Destroy (collider.gameObject);
+                AudioSource.PlayClipAtPoint(gemSound, transform.position);
+                Destroy (collider.gameObject);
         }
         if (collider.gameObject.tag == "Enemy") {
-                gameObject.GetComponent<AudioSource>().Play();
                 GameManager.currentLives--;
-                print(GameManager.currentLives);
-                animator.SetTrigger ("Hurt");
+                if( GameManager.currentLives < 1){
+                    AudioSource.PlayClipAtPoint(deathSound, transform.position);
+                    animator.SetTrigger ("Death");
+                    animator.SetTrigger ("Recover");
+                } else {
+                    AudioSource.PlayClipAtPoint(hurtSound, transform.position);
+                    animator.SetTrigger ("Hurt");
+                }
+                
                 textLives.text = GameManager.currentLives.ToString();
-                //Destroy (collider.gameObject);
         }
    }
 

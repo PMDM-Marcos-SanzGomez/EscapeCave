@@ -4,30 +4,18 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject fireball; // Asigna el prefab de la bola de fuego en el Inspector
-    public float throwSpeed = 10f;
-    public float movementSpeed = 5f;
+    public float movementSpeed;
     public LayerMask wallLayer;
 
     private bool movingRight = true;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject fireballGO = Instantiate(fireball, transform.position, transform.rotation);
-
-        // Obtiene el componente Rigidbody de la bola de fuego
-        Rigidbody2D rb = fireballGO.GetComponent<Rigidbody2D>();
-
-        // Aplica fuerza para lanzar la bola de fuego
-        rb.velocity = transform.forward * throwSpeed;
-
-        StartCoroutine(ThrowFireball());
-        MoveHorizontally();
 
     }
-
-    // Mover horizontal no funciona, arreglar 
-
+    void Update() {
+        MoveHorizontally();
+    }
     void MoveHorizontally()
     {
         // Determina la dirección del movimiento
@@ -44,24 +32,6 @@ public class Enemy : MonoBehaviour
 
         // Mueve al enemigo en la dirección correspondiente
         transform.Translate(direction * movementSpeed * Time.deltaTime);
-    }
-
-    IEnumerator ThrowFireball()
-    {
-        while (true)
-        {
-            // Crea una instancia de la bola de fuego en el punto de lanzamiento
-            GameObject bolaDeFuego = Instantiate(fireball, transform.position, transform.rotation);
-
-            // Obtiene el componente Rigidbody de la bola de fuego
-            Rigidbody rb = bolaDeFuego.GetComponent<Rigidbody>();
-
-            // Aplica fuerza para lanzar la bola de fuego
-            rb.velocity = transform.forward * throwSpeed;
-
-            // Espera 2 segundos antes de lanzar la siguiente bola de fuego
-            yield return new WaitForSeconds(2.0f);
-        }
     }
 
 }

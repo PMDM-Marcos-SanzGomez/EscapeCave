@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Enemy Proyectile
   - Wall
+  - FxTemporaire
+  - Character
   layers:
   - Default
   - TransparentFX

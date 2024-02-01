@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 43dfaa63bb38004de8e56f36c8312e79
+=======
+guid: 6bd03f512af6146d0b42db2c1b03fa96
+>>>>>>> 311bab6 (Level 2 avanzado, falta logica de juego)
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

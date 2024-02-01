@@ -28,7 +28,6 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
-    public TextMeshProUGUI textCounter;
     public TextMeshProUGUI textAttempts;
     public TextMeshProUGUI timerText;
 
@@ -39,6 +38,7 @@ public class Character : MonoBehaviour
     public AudioClip deathSound;
     public AudioClip jumpSound;
     public AudioClip deniedSound;
+    private float totalTimePlayed;
 
     //Movement button
     float movementButton = 0.0f;
@@ -72,8 +72,8 @@ public class Character : MonoBehaviour
         }
 
         // Get player input for lateral movement
-        //Speed = lateralMovement * Input.GetAxis ("Horizontal");
-        Speed = lateralMovement * movementButton;
+        Speed = lateralMovement * Input.GetAxis ("Horizontal");
+        //Speed = lateralMovement * movementButton;
 
         // The character moves according to the calculated speed
         transform.Translate (Vector2.right * Speed * Time.deltaTime);
@@ -106,15 +106,6 @@ public class Character : MonoBehaviour
             GameManager.timer = matchSecondsDuration;
             GameManager.attemps++;
             SceneManager.LoadScene("Level1");
-        }
-
-        // If all gems are collected, the final scene loads
-        if (GameManager.currentGems == 3)
-        {
-            SceneManager.LoadScene("FinalScene");
-        } else{
-            UpdateCounterDisplay();
-            GameManager.counter += Time.deltaTime;
         }
     }
 
@@ -155,6 +146,11 @@ public class Character : MonoBehaviour
                 textGems.text = GameManager.currentGems.ToString();
                 AudioSource.PlayClipAtPoint(gemSound, transform.position);
                 Destroy (collider.gameObject);
+                if(GameManager.currentGems == 3){
+                    totalTimePlayed = 240 - GameManager.timer;
+                    SceneManager.LoadScene("FinalScene");
+                }
+                
         }
         if (collider.gameObject.tag == "DoorLevelOne") {
                 SceneManager.LoadScene("Level1");
@@ -191,12 +187,7 @@ public class Character : MonoBehaviour
         int seconds = Mathf.FloorToInt(GameManager.timer % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
-    void UpdateCounterDisplay()
-    {
-        int minutes = Mathf.FloorToInt(GameManager.counter / 60);
-        int seconds = Mathf.FloorToInt(GameManager.counter % 60);
-        textCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
+    
 
     // The virtual camera is activated again if you leave the zoom area
     void OnTriggerExit2D(Collider2D other)

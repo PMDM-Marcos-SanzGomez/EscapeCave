@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5206177713963500021}
   - component: {fileID: 7103425053039199750}
-  - component: {fileID: 8643347239713322919}
   - component: {fileID: 7230858564587041334}
+  - component: {fileID: 3163200192106566506}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -86,8 +86,24 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &8643347239713322919
-BoxCollider2D:
+--- !u!114 &7230858564587041334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8219583968345255816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c086025873c333ad595edf07885e8d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 4
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!60 &3163200192106566506
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -118,7 +134,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.013649622}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,22 +144,13 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.16, y: 0.13270076}
-  m_EdgeRadius: 0
---- !u!114 &7230858564587041334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8219583968345255816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c086025873c333ad595edf07885e8d31, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 4
-  wallLayer:
-    serializedVersion: 2
-    m_Bits: 512
+  m_Points:
+    m_Paths:
+    - - {x: -0.01, y: 0.02}
+      - {x: -0.08, y: -0.02}
+      - {x: -0.08, y: -0.08}
+      - {x: 0.08, y: -0.08}
+      - {x: 0.08, y: 0.07}
+      - {x: 0.02, y: 0.07}
+      - {x: -0.01, y: 0.04}
+  m_UseDelaunayMesh: 0

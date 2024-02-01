@@ -8,7 +8,7 @@ using TMPro;
 public static class GameManager
 {
 	// Duration of a match in seconds
-	private const int matchSecondsDuration = 180;
+	private const int matchSecondsDuration = 240;
 
 	// Timer representing the current time remaining in the match
 	public static float timer = matchSecondsDuration;

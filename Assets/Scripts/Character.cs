@@ -28,13 +28,10 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
-<<<<<<< HEAD
+
     public TextMeshProUGUI textAttempts;
     public TextMeshProUGUI textCounter;
-    
-=======
     public TextMeshProUGUI textAttempts
->>>>>>> 7991141 (Caracter.cs comentado)
     public TextMeshProUGUI timerText;
 
     // Game sounds
@@ -57,11 +54,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-<<<<<<< HEAD
-        
-=======
         // Check if the character is on the ground using a raycast
->>>>>>> 7991141 (Caracter.cs comentado)
         grounded = Physics2D.Linecast (transform.position,
                                         groundCheck.position,
                                         LayerMask.GetMask ("Ground"));

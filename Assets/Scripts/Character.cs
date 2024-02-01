@@ -136,13 +136,7 @@ public class Character : MonoBehaviour
         }
         if (collider.gameObject.tag == "Enemy") {
                 GameManager.currentLives--;
-                if( GameManager.currentLives < 1){
-                    if (SceneManager.GetActiveScene().name == "Level2") {
-                        AudioSource.PlayClipAtPoint(deathSound, transform.position);
-                        animator.SetTrigger ("Death");
-                        SceneManager.LoadScene("Level1");
-                        animator.SetTrigger ("Recover");
-                    }
+                if( GameManager.currentLives == 0){
                     AudioSource.PlayClipAtPoint(deathSound, transform.position);
                     animator.SetTrigger ("Death");
                     animator.SetTrigger ("Recover");

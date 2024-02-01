@@ -12,7 +12,7 @@ public static class GameManager
     public static float timer = matchSecondsDuration; 
     public static int currentKeys = 0;
     public static int currentGems = 0;
-    public static int currentLives = 3;
+    public static int currentLives = 5;
     public static int attemps = 1;
 
 }

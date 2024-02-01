@@ -117,6 +117,9 @@ public class Character : MonoBehaviour
                 AudioSource.PlayClipAtPoint(gemSound, transform.position);
                 Destroy (collider.gameObject);
         }
+        if (collider.gameObject.tag == "DoorLevelOne") {
+                SceneManager.LoadScene("Level1");
+        }
         if (collider.gameObject.tag == "Enemy") {
                 GameManager.currentLives--;
                 if( GameManager.currentLives < 1){

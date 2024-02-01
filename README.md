@@ -22,5 +22,7 @@ In this level, you have to pick up the 3 gems. The are enemies too so you need t
 In this scene you see your game stats (gems, keys, lives and time played). The background changes and you are finally outside the cave.
 
 
+**Vídeo Youtube:** https://youtu.be/3bXZjORO9go
+
 By Marcos Sanz and Martín Peidro. DAM-B
 

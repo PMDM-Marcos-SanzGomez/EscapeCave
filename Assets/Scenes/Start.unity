@@ -1481,7 +1481,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9854287, y: -6.8627596, z: -10}
+  m_LocalPosition: {x: 1.9854225, y: -6.8627596, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1631,7 +1631,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 0.052
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3109,7 +3109,6 @@ MonoBehaviour:
   textKey: {fileID: 411100365}
   textAttempts: {fileID: 411100365}
   timerText: {fileID: 411100365}
-  timePlayedtext: {fileID: 411100365}
   keySound: {fileID: 8300000, guid: 116e2ea058269ec9cbfa806925dd56e2, type: 3}
   gemSound: {fileID: 8300000, guid: 5dcd39a0075acfce88b143a216074d32, type: 3}
   hurtSound: {fileID: 8300000, guid: b173ad8a0d89b5a419db7073a9569f37, type: 3}

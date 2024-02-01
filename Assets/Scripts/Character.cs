@@ -72,8 +72,12 @@ public class Character : MonoBehaviour
         }
 
         // Get player input for lateral movement
-        Speed = lateralMovement * Input.GetAxis ("Horizontal");
-        //Speed = lateralMovement * movementButton;
+        if (Application.isMobilePlatform){
+            Speed = lateralMovement * movementButton;
+        } else {
+            Speed = lateralMovement * Input.GetAxis ("Horizontal");
+        }
+        
 
         // The character moves according to the calculated speed
         transform.Translate (Vector2.right * Speed * Time.deltaTime);

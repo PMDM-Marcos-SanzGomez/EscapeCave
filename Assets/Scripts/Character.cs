@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
     public TextMeshProUGUI textAttempts;
+    public TextMeshProUGUI textCounter;
     
     public TextMeshProUGUI timerText;
     public AudioClip keySound;
@@ -41,6 +42,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         grounded = Physics2D.Linecast (transform.position,
                                         groundCheck.position,
                                         LayerMask.GetMask ("Ground"));
@@ -81,7 +83,6 @@ public class Character : MonoBehaviour
             }
 
         if (GameManager.timer > 0){
-
             GameManager.timer -= Time.deltaTime;
             UpdateTimerDisplay();
 
@@ -95,6 +96,9 @@ public class Character : MonoBehaviour
         if (GameManager.currentGems == 3)
         {
             SceneManager.LoadScene("FinalScene");
+        } else{
+            UpdateCounterDisplay();
+            GameManager.counter += Time.deltaTime;
         }
     }
 
@@ -155,6 +159,12 @@ public class Character : MonoBehaviour
         int minutes = Mathf.FloorToInt(GameManager.timer / 60);
         int seconds = Mathf.FloorToInt(GameManager.timer % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+    void UpdateCounterDisplay()
+    {
+        int minutes = Mathf.FloorToInt(GameManager.counter / 60);
+        int seconds = Mathf.FloorToInt(GameManager.counter % 60);
+        textCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     void OnTriggerExit2D(Collider2D other)

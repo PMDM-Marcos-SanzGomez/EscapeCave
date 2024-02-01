@@ -3108,12 +3108,14 @@ MonoBehaviour:
   textGems: {fileID: 411100365}
   textKey: {fileID: 411100365}
   textAttempts: {fileID: 411100365}
+  textCounter: {fileID: 411100365}
   timerText: {fileID: 411100365}
   keySound: {fileID: 8300000, guid: 116e2ea058269ec9cbfa806925dd56e2, type: 3}
   gemSound: {fileID: 8300000, guid: 5dcd39a0075acfce88b143a216074d32, type: 3}
   hurtSound: {fileID: 8300000, guid: b173ad8a0d89b5a419db7073a9569f37, type: 3}
   deathSound: {fileID: 8300000, guid: bc490618601c188ea8df0e1c827c0df8, type: 3}
   jumpSound: {fileID: 8300000, guid: f70495217d2c7974f9735d30b6804b46, type: 3}
+  deniedSound: {fileID: 0}
 --- !u!1 &1560096346
 GameObject:
   m_ObjectHideFlags: 0

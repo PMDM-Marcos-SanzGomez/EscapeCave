@@ -10,6 +10,7 @@ public static class GameManager
     private const int matchSecondsDuration = 180;
 
     public static float timer = matchSecondsDuration; 
+    public static float counter = 0; 
     public static int currentKeys = 0;
     public static int currentGems = 0;
     public static int currentLives = 5;

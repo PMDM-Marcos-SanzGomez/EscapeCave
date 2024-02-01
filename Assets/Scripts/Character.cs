@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
-//using Cinemachine;
+using Cinemachine;
 
 public class Character : MonoBehaviour
 {
@@ -21,21 +21,21 @@ public class Character : MonoBehaviour
     public TextMeshProUGUI textKey;
     public TextMeshProUGUI textAttempts;
     
-    private Vector3 initialPosition;// 3 minutos en segundos
     public TextMeshProUGUI timerText;
     public AudioClip keySound;
     public AudioClip gemSound;
     public AudioClip hurtSound;
     public AudioClip deathSound;
     public AudioClip jumpSound;
+    public AudioClip deniedSound;
     float movementButton = 0.0f;
+    
 
 
     // Use this for initialization
     void Start () {
         animator = GetComponent<Animator> ();
         rigidbody2d = GetComponent<Rigidbody2D> ();
-        initialPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -79,7 +79,7 @@ public class Character : MonoBehaviour
                 textGems.text = GameManager.currentGems.ToString();
                 textKey.text = GameManager.currentKeys.ToString();
 
-                transform.position = initialPosition;           
+                SceneManager.LoadScene("Level1");        
             }
 
         if (GameManager.timer > 0){
@@ -90,8 +90,7 @@ public class Character : MonoBehaviour
         } else
         {
             GameManager.timer = matchSecondsDuration;
-            // Cuando esten todas las escenas creadas cambiar el else.
-            // ResetScene();
+            GameManager.attemps++;
         }
     }
 
@@ -105,6 +104,9 @@ public class Character : MonoBehaviour
         movementButton = amount;
     }
     void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.tag == "Zoom"){
+            GameObject.Find("MainVirtual").GetComponent<CinemachineVirtualCamera>().enabled = false;
+        }
         if (collider.gameObject.tag == "Key") {
                 GameManager.currentKeys++;
                 textKey.text = GameManager.currentKeys.ToString();
@@ -120,12 +122,21 @@ public class Character : MonoBehaviour
         if (collider.gameObject.tag == "DoorLevelOne") {
                 SceneManager.LoadScene("Level1");
         }
+        if (collider.gameObject.tag == "DoorLevelTwo") {
+            if(GameManager.currentKeys==1){
+                SceneManager.LoadScene("Level2");
+            } else {
+                AudioSource.PlayClipAtPoint(deniedSound, transform.position);
+            }
+                
+        }
         if (collider.gameObject.tag == "Enemy") {
                 GameManager.currentLives--;
                 if( GameManager.currentLives < 1){
                     AudioSource.PlayClipAtPoint(deathSound, transform.position);
                     animator.SetTrigger ("Death");
                     animator.SetTrigger ("Recover");
+                    SceneManager.LoadScene("Level1");
                 } else {
                     AudioSource.PlayClipAtPoint(hurtSound, transform.position);
                     animator.SetTrigger ("Hurt");
@@ -140,5 +151,12 @@ public class Character : MonoBehaviour
         int minutes = Mathf.FloorToInt(GameManager.timer / 60);
         int seconds = Mathf.FloorToInt(GameManager.timer % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+    if (other.CompareTag("Zoom")){
+        GameObject.Find("MainVirtual").GetComponent<CinemachineVirtualCamera>().enabled = true;
+    }
     }
 }

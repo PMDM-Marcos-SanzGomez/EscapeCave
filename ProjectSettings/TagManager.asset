@@ -11,8 +11,9 @@ TagManager:
   - Wall
   - FxTemporaire
   - Character
-  - Door
   - DoorLevelOne
+  - DoorLevelTwo
+  - Zoom
   layers:
   - Default
   - TransparentFX

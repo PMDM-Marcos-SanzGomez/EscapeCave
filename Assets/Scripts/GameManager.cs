@@ -13,7 +13,7 @@ public static class GameManager
 	// Timer representing the current time remaining in the match
 	public static float timer = matchSecondsDuration;
 
-	// Counter variable (initially not used in the provided code)
+	// Time played by the player
 	public static float counter = 0;
 
 	// Number of keys collected by the player

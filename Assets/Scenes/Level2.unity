@@ -436,9 +436,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '3
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2171,8 +2169,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1240484153
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7564a51a992edb9438af3361dd2741ea, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2194,7 +2192,7 @@ Transform:
   m_GameObject: {fileID: 721002203}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 705, y: 466, z: -12150}
+  m_LocalPosition: {x: 705, y: 466, z: -12168}
   m_LocalScale: {x: 5.793314, y: 5.793314, z: 5.793314}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3013,8 +3011,8 @@ MonoBehaviour:
   textLives: {fileID: 91089693}
   textGems: {fileID: 106174059}
   textKey: {fileID: 1440085583}
-  textAttempts: {fileID: 141389848}
   textCounter: {fileID: 1812439590}
+  textAttempts: {fileID: 141389848}
   timerText: {fileID: 276475587}
   keySound: {fileID: 8300000, guid: 116e2ea058269ec9cbfa806925dd56e2, type: 3}
   gemSound: {fileID: 8300000, guid: 5dcd39a0075acfce88b143a216074d32, type: 3}
@@ -11310,7 +11308,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5206177713963500021, guid: e26fcab03a13632c689ee337e9e8cf68, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.72
+      value: -4.06
       objectReference: {fileID: 0}
     - target: {fileID: 5206177713963500021, guid: e26fcab03a13632c689ee337e9e8cf68, type: 3}
       propertyPath: m_LocalPosition.y

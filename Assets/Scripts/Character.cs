@@ -8,7 +8,7 @@ using Cinemachine;
 public class Character : MonoBehaviour
 {
     // Game duration
-    private const int matchSecondsDuration = 180;
+    private const int matchSecondsDuration = 240;
     // Character speed
     public float Speed = 0.0f;
     // Lateral movement speed
@@ -24,14 +24,12 @@ public class Character : MonoBehaviour
     // Variable to check if the character is on the ground
     public bool grounded = true;
 
-    // Referencias a los textos de la interfaz de usuario
+    // Texts of the UI
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
-
-    public TextMeshProUGUI textAttempts;
     public TextMeshProUGUI textCounter;
-    public TextMeshProUGUI textAttempts
+    public TextMeshProUGUI textAttempts;
     public TextMeshProUGUI timerText;
 
     // Game sounds
@@ -54,6 +52,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdateTexts();
         // Check if the character is on the ground using a raycast
         grounded = Physics2D.Linecast (transform.position,
                                         groundCheck.position,
@@ -73,8 +72,8 @@ public class Character : MonoBehaviour
         }
 
         // Get player input for lateral movement
-        Speed = lateralMovement * Input.GetAxis ("Horizontal");
-        //Speed = lateralMovement * movementButton;
+        //Speed = lateralMovement * Input.GetAxis ("Horizontal");
+        Speed = lateralMovement * movementButton;
 
         // The character moves according to the calculated speed
         transform.Translate (Vector2.right * Speed * Time.deltaTime);
@@ -90,16 +89,10 @@ public class Character : MonoBehaviour
         if (GameManager.currentLives <= 0)
             {
                 GameManager.timer = matchSecondsDuration;
-                GameManager.currentLives = 3;
+                GameManager.currentLives = 5;
                 GameManager.currentGems = 0;
                 GameManager.currentKeys = 0;
                 GameManager.attemps++;
-
-                // Texts in the user interface are updated
-                textAttempts.text = GameManager.attemps.ToString();
-                textLives.text = GameManager.currentLives.ToString();
-                textGems.text = GameManager.currentGems.ToString();
-                textKey.text = GameManager.currentKeys.ToString();
             }
 
         // The game timer is updated
@@ -123,6 +116,14 @@ public class Character : MonoBehaviour
             UpdateCounterDisplay();
             GameManager.counter += Time.deltaTime;
         }
+    }
+
+    void UpdateTexts(){
+        // Texts in the user interface are updated
+        textAttempts.text = GameManager.attemps.ToString();
+        textLives.text = GameManager.currentLives.ToString();
+        textGems.text = GameManager.currentGems.ToString();
+        textKey.text = GameManager.currentKeys.ToString();
     }
 
     // Method to jump
@@ -173,6 +174,7 @@ public class Character : MonoBehaviour
                     animator.SetTrigger ("Death");
                     animator.SetTrigger ("Recover");
                     SceneManager.LoadScene("Level1");
+                    UpdateTexts();
                 } else {
                     AudioSource.PlayClipAtPoint(hurtSound, transform.position);
                     animator.SetTrigger ("Hurt");

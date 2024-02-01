@@ -18,21 +18,21 @@ public class Enemy : MonoBehaviour
     }
     void MoveHorizontally()
     {
-        // Determina la dirección del movimiento
+        // Determines the direction of movement
         Vector2 direction = movingRight ? Vector2.right : Vector2.left;
 
-        // Realiza un Raycast hacia adelante para detectar paredes
+        // Raycast forward to detect walls
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 0.5f, wallLayer);
 
-        // Si hay una pared, cambia la dirección del movimiento
+        //If there is a wall, change the direction of movement
         if (hit.collider != null)
         {
             movingRight = !movingRight;
             transform.localScale = new Vector3(-transform.localScale.x, transform.localScale.y, transform.localScale.z);
         }
 
-        // Mueve al enemigo en la dirección correspondiente
-        transform.Translate(direction * movementSpeed * Time.deltaTime);
+	// Move the enemy in the corresponding direction
+      transform.Translate(direction * movementSpeed * Time.deltaTime);
         
 
     }

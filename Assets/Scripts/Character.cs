@@ -90,7 +90,11 @@ public class Character : MonoBehaviour
         } else
         {
             GameManager.timer = matchSecondsDuration;
+<<<<<<< HEAD
             GameManager.attemps++;
+=======
+            SceneManager.LoadScene("Level1");
+>>>>>>> ec0fbb5 (Level 2 avanzado, falta solucionar error en enemigo)
         }
     }
 
@@ -133,6 +137,12 @@ public class Character : MonoBehaviour
         if (collider.gameObject.tag == "Enemy") {
                 GameManager.currentLives--;
                 if( GameManager.currentLives < 1){
+                    if (SceneManager.GetActiveScene().name == "Level2") {
+                        AudioSource.PlayClipAtPoint(deathSound, transform.position);
+                        animator.SetTrigger ("Death");
+                        SceneManager.LoadScene("Level1");
+                        animator.SetTrigger ("Recover");
+                    }
                     AudioSource.PlayClipAtPoint(deathSound, transform.position);
                     animator.SetTrigger ("Death");
                     animator.SetTrigger ("Recover");
@@ -141,7 +151,7 @@ public class Character : MonoBehaviour
                     AudioSource.PlayClipAtPoint(hurtSound, transform.position);
                     animator.SetTrigger ("Hurt");
                 }
-                
+
                 textLives.text = GameManager.currentLives.ToString();
         }
    }

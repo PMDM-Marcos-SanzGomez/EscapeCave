@@ -712,11 +712,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 1.5390725, y: 17.63311}
-      - {x: -21.904816, y: 17.607086}
-      - {x: -21.904047, y: -5.429037}
-      - {x: 30.544811, y: -5.396923}
-      - {x: 30.531418, y: 16.916525}
+    - - {x: 17.319508, y: 13.771454}
+      - {x: 1.3856723, y: 13.900372}
+      - {x: -13.570071, y: 13.92548}
+      - {x: -13.503428, y: -5.978609}
+      - {x: 23.466486, y: -6.0393305}
+      - {x: 23.498245, y: 0.5361228}
+      - {x: 23.536705, y: 6.1568284}
+      - {x: 23.42408, y: 13.785913}
   m_UseDelaunayMesh: 0
 --- !u!4 &122629295
 Transform:
@@ -1699,7 +1702,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.9863614, y: -6.8627696, z: -10}
+  m_LocalPosition: {x: 1.986366, y: -6.8627696, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3016,6 +3019,7 @@ MonoBehaviour:
   hurtSound: {fileID: 8300000, guid: b173ad8a0d89b5a419db7073a9569f37, type: 3}
   deathSound: {fileID: 8300000, guid: bc490618601c188ea8df0e1c827c0df8, type: 3}
   jumpSound: {fileID: 8300000, guid: f70495217d2c7974f9735d30b6804b46, type: 3}
+  deniedSound: {fileID: 0}
 --- !u!1001 &1551463088
 PrefabInstance:
   m_ObjectHideFlags: 0

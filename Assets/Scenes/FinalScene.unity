@@ -965,7 +965,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1706124228}
   - {fileID: 721002205}
   - {fileID: 810205946}
   - {fileID: 369846544}
@@ -2120,7 +2119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 834790256}
   - component: {fileID: 834790257}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Y
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2310,7 +2309,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1009839264}
   - component: {fileID: 1009839265}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: R
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2394,7 +2393,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1426063210}
   - component: {fileID: 1426063211}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,6 +2698,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 875671104}
+  - {fileID: 1706124228}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2716,7 +2716,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1478016771}
   - component: {fileID: 1478016772}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: V
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3089,7 +3089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1664778422}
   - component: {fileID: 1664778423}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: O
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3260,7 +3260,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1706124228}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Victory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3276,7 +3276,7 @@ Transform:
   m_GameObject: {fileID: 1706124227}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.89639, y: -126, z: -12238.63}
+  m_LocalPosition: {x: 17.89639, y: -126, z: -11827}
   m_LocalScale: {x: 135, y: 135, z: 135}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3287,7 +3287,7 @@ Transform:
   - {fileID: 1664778422}
   - {fileID: 1009839264}
   - {fileID: 834790256}
-  m_Father: {fileID: 263580072}
+  m_Father: {fileID: 1477226664}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1765023976
 GameObject:
@@ -3345,7 +3345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1780196319}
   - component: {fileID: 1780196320}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: T
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3672,7 +3672,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1863361918}
   - component: {fileID: 1863361919}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: I
   m_TagString: Untagged
   m_Icon: {fileID: 0}

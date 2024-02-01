@@ -7,31 +7,46 @@ using Cinemachine;
 
 public class Character : MonoBehaviour
 {
+    // Game duration
     private const int matchSecondsDuration = 180;
-    // Start is called before the first frame update
+    // Character speed
     public float Speed = 0.0f;
+    // Lateral movement speed
     public float lateralMovement = 2.0f;
+    // Jump force
     public float jumpMovement = 400.0f;
+    // Transform to check if the character is on the ground
     public Transform groundCheck;
+    // Reference to the character's Animator
     private Animator animator;
+    // Reference to the character's Rigidbody2D
     private Rigidbody2D rigidbody2d;
+    // Variable to check if the character is on the ground
     public bool grounded = true;
+
+    // Referencias a los textos de la interfaz de usuario
     public TextMeshProUGUI textLives;
     public TextMeshProUGUI textGems;
     public TextMeshProUGUI textKey;
+<<<<<<< HEAD
     public TextMeshProUGUI textAttempts;
     public TextMeshProUGUI textCounter;
     
+=======
+    public TextMeshProUGUI textAttempts
+>>>>>>> 7991141 (Caracter.cs comentado)
     public TextMeshProUGUI timerText;
+
+    // Game sounds
     public AudioClip keySound;
     public AudioClip gemSound;
     public AudioClip hurtSound;
     public AudioClip deathSound;
     public AudioClip jumpSound;
     public AudioClip deniedSound;
-    float movementButton = 0.0f;
-    
 
+    //Movement button
+    float movementButton = 0.0f;
 
     // Use this for initialization
     void Start () {
@@ -42,32 +57,43 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+<<<<<<< HEAD
         
+=======
+        // Check if the character is on the ground using a raycast
+>>>>>>> 7991141 (Caracter.cs comentado)
         grounded = Physics2D.Linecast (transform.position,
                                         groundCheck.position,
                                         LayerMask.GetMask ("Ground"));
 
+        // If the character is on the ground and the jump button is pressed, an upward force is applied
         if (grounded && Input.GetButtonDown ("Jump") && Mathf.Abs(rigidbody2d.velocity.y) < 0.01f){
             rigidbody2d.AddForce (Vector2.up * jumpMovement);
             AudioSource.PlayClipAtPoint(jumpSound, transform.position);
         }
 
+        // Updates character animation depending on whether they are on the ground or in the air
         if (grounded){
             animator.SetTrigger ("Grounded");
         } else{
             animator.SetTrigger ("Jump");
         }
 
+        // Get player input for lateral movement
         Speed = lateralMovement * Input.GetAxis ("Horizontal");
         //Speed = lateralMovement * movementButton;
 
+        // The character moves according to the calculated speed
         transform.Translate (Vector2.right * Speed * Time.deltaTime);
+
+        // The character's movement animation and the scale of its sprite are updated
         animator.SetFloat("Speed", Mathf.Abs(Speed));
         if (Speed < 0)
             transform.localScale = new Vector3 (1, 1, 1);
         else
             transform.localScale = new Vector3 (-1, 1, 1);
 
+        //Handles game logic, such as resetting the timer and counting attempts
         if (GameManager.currentLives <= 0)
             {
                 GameManager.timer = matchSecondsDuration;
@@ -76,23 +102,27 @@ public class Character : MonoBehaviour
                 GameManager.currentKeys = 0;
                 GameManager.attemps++;
 
+                // Texts in the user interface are updated
                 textAttempts.text = GameManager.attemps.ToString();
                 textLives.text = GameManager.currentLives.ToString();
                 textGems.text = GameManager.currentGems.ToString();
                 textKey.text = GameManager.currentKeys.ToString();
             }
 
+        // The game timer is updated
         if (GameManager.timer > 0){
             GameManager.timer -= Time.deltaTime;
             UpdateTimerDisplay();
 
         } else
         {
+            // If the timer reaches zero, it restarts and the scene loads
             GameManager.timer = matchSecondsDuration;
             GameManager.attemps++;
             SceneManager.LoadScene("Level1");
         }
 
+        // If all gems are collected, the final scene loads
         if (GameManager.currentGems == 3)
         {
             SceneManager.LoadScene("FinalScene");
@@ -102,16 +132,21 @@ public class Character : MonoBehaviour
         }
     }
 
+    // Method to jump
     public void Jump()
     {
         if (grounded)
             rigidbody2d.AddForce(Vector2.up * jumpMovement);
     }
+
+    // Method to move
     public void Move(float amount)
     {
         movementButton = amount;
     }
+
     void OnTriggerEnter2D(Collider2D collider) {
+        // Different events are handled depending on the object that activates the trigger
         if (collider.gameObject.tag == "Zoom"){
             GameObject.Find("MainVirtual").GetComponent<CinemachineVirtualCamera>().enabled = false;
         }
@@ -154,6 +189,7 @@ public class Character : MonoBehaviour
         }
    }
 
+    // Method to update the timer display
    void UpdateTimerDisplay()
     {
         int minutes = Mathf.FloorToInt(GameManager.timer / 60);
@@ -167,6 +203,7 @@ public class Character : MonoBehaviour
         textCounter.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
+    // The virtual camera is activated again if you leave the zoom area
     void OnTriggerExit2D(Collider2D other)
     {
     if (other.CompareTag("Zoom")){

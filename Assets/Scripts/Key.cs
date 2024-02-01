@@ -12,8 +12,11 @@ public class Key : MonoBehaviour
         
     }
     void OnTriggerEnter2D(Collider2D collider) {
+        // If the collider belongs to the character object
         if (collider.gameObject.tag == "Character") {
+        		 // Instantiate a gem explosion effect at the current object's position
                 Instantiate(keyExplosion, transform.position, Quaternion.identity);
+                	 // Destroy the current gem object
                 Destroy (gameObject);
                 
         }

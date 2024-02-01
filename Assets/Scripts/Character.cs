@@ -78,8 +78,6 @@ public class Character : MonoBehaviour
                 textLives.text = GameManager.currentLives.ToString();
                 textGems.text = GameManager.currentGems.ToString();
                 textKey.text = GameManager.currentKeys.ToString();
-
-                SceneManager.LoadScene("Level1");        
             }
 
         if (GameManager.timer > 0){
@@ -90,11 +88,13 @@ public class Character : MonoBehaviour
         } else
         {
             GameManager.timer = matchSecondsDuration;
-<<<<<<< HEAD
             GameManager.attemps++;
-=======
             SceneManager.LoadScene("Level1");
->>>>>>> ec0fbb5 (Level 2 avanzado, falta solucionar error en enemigo)
+        }
+
+        if (GameManager.currentGems == 3)
+        {
+            SceneManager.LoadScene("FinalScene");
         }
     }
 
